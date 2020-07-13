@@ -33,7 +33,7 @@ app.use('/api', asignatura_routes);
 app.use('/api', persona_asignatura_routes);
 app.use('/api', usuario_routes);
 
-mongoose.connect('mongodb+srv://HieloxZack:Kirito21.@cluster0-phvvj.mongodb.net/Api_1_Desarrollo_Web?retryWrites=true&w=majority', (err, res) => {
+mongoose.connect('mongodb+srv://danielbustos86:daniel123@cluster0-wxfwq.mongodb.net/UBB202001?retryWrites=true&w=majority', (err, res) => {
 
     if(err){
         console.log("NO CONECTA")

@@ -2,6 +2,7 @@
 const bcrypt = require('bcrypt-nodejs')
 // AQUI Cargamos el modelo para usarlo posteriormente en la siguiente clase
 var Usuario = require('../modelos/usuario.js');
+const servicio = require('../servicios/index')
 
 function guardar(req, res) {
 
@@ -40,7 +41,8 @@ function validar(req, res) {
             } else if (!isMatch) {
                 res.status(401).send({ 'mensaje':'incorrecto'})
             } else {
-                res.status(200).send({ 'mensaje':'correcto' })
+                res.status(200).send({ 'mensaje':'correcto','token':servicio.createToken(user)})
+
             }
           })
     })
@@ -60,9 +62,23 @@ function todos(req, res) {
 
 }
 
+const validaVigenciaUsuario = (req,res) =>{
+
+
+    Usuario.findById(req.user, function (err, usuario) {
+        if (err) return res.status(401).send({'mensaje':'usuario no autorizado'})
+
+        return  res.status(200).send({'usuario':usuario.mail});
+    });
+ 
+}
+
+
+
 module.exports = {
     guardar,
     todos,
-    validar
+    validar,
+    validaVigenciaUsuario
 
 };

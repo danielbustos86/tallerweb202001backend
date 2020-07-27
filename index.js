@@ -1,4 +1,5 @@
 'use strict'
+require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
@@ -16,6 +17,7 @@ var asignatura_routes = require('./routes/asignaturaRoute');
 var persona_asignatura_routes = require('./routes/personas_asignaturaRoute');
 
 var usuario_routes = require('./routes/usuarioRoute');
+var testRoutes = require('./routes/testRoute');
 const mongoose = require('mongoose')
 
 
@@ -32,8 +34,8 @@ app.use('/api', profesor_routes);
 app.use('/api', asignatura_routes);
 app.use('/api', persona_asignatura_routes);
 app.use('/api', usuario_routes);
-
-mongoose.connect('mongodb+srv://danielbustos86:daniel123@cluster0-wxfwq.mongodb.net/UBB202001?retryWrites=true&w=majority', (err, res) => {
+app.use('/api', testRoutes);
+mongoose.connect(`mongodb+srv://${process.env.USERBD}:${process.env.PASSBD}@${process.env.CLUSTER}?retryWrites=true&w=majority`, (err, res) => {
 
     if(err){
         console.log("NO CONECTA")

@@ -7,6 +7,7 @@ var express = require('express');
 var userController = require('../controllers/usuarioController');
 // var autoController = require('../controllers/autoController');
 
+const auth = require('../middlewares/auth')
 // Llamamos al router
 var api = express.Router();
  
@@ -14,7 +15,7 @@ var api = express.Router();
 api.post('/usuario', userController.guardar);
 api.get('/usuario', userController.todos);
 api.post('/usuario/validar', userController.validar);
-
+api.post('/usuario/vigencia',auth.isAuth,userController.validaVigenciaUsuario);
 
 // api.post('/autoguardar',autoController.guardar);
 

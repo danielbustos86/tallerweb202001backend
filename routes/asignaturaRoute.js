@@ -11,8 +11,6 @@ var api = express.Router();
  
 //  Guardar Autos
 api.post('/asignatura', AsignaturaController.guardar);
-api.get('/asignatura', AsignaturaController.listar);
-api.get('/asignaturasimple', AsignaturaController.listarSimple)
-// Exportamos la configuración
+
 module.exports = api;
 
